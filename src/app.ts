@@ -1,22 +1,21 @@
-import express from "express";
-import {createAtHome, getHomePage} from "./controllers/home";
+import express from 'express';
+
+// import todosRouter from './routes/todos';
+import appRouter from './routes/index.js';
 
 const app = express();
 
+// Body Parser
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/", getHomePage)
-app.post("/", createAtHome)
+app.use(appRouter);
+// app.use('/todos', todosRouter);
 
-app.get("/about", (req, res) => {
-    res.send("<h1>Hellp from About Page</h1>");
-})
+// app.all('*', (req, res) => {
+//   res.status(404).send('<h1>Nothing found!');
+// });
 
-app.all("*path", (req, res) => {
-    res.status(404).send("<h1>Nothing Found</h1>");
-})
-
-app.listen(3000, ()=>{
-    console.log("Server running on port 3000");
+app.listen(3000, () => {
+    console.log('Start');
 });
