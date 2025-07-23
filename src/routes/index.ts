@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 
-import todosRouter from './todos.js';
+import todosRouter from './todos';
 
 const router = Router();
 
